@@ -1,9 +1,7 @@
 
 node{
-     stage("Fix the permission issue") {
-        steps {
-            sh "sudo chown root:jenkins /run/docker.sock"
-        }
+    stage("Fix the permission issue") {
+        sh "sudo chown root:jenkins /run/docker.sock"
     }
 
     stage('Build'){
