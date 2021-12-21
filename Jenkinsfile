@@ -6,22 +6,17 @@ node{
     stage('Build'){
         withEnv(["GOROOT=${root}", "PATH+GO=${root}/bin"]) {
             sh 'go version'
-            sh 'go build -o main'
+            sh 'docker build -t sungyupv/kubectl_cli:latest'
         }
     }
  
     stage('Test') {
         sh '''
         echo "Start Test"
-        ./main
         '''
     }
     stage('Archive') {
-        sh '''
-        echo "Start Archiving"
-        mv ./main ./artifact/
-        '''
-        archiveArtifacts artifacts: 'artifact/*', fingerprint: true 
+        sh 'docker push sungyupv/kubectl_cli:latest'
     }
 }
 
