@@ -4,10 +4,7 @@ node{
         // Export environment variables pointing to the directory where Go was installed
 
     stage('Build'){
-        withEnv(["GOROOT=${root}", "PATH+GO=${root}/bin"]) {
-            sh 'go version'
-            sh 'sudo docker build -t sungyupv/kubectl_cli:latest .'
-        }
+        app = docker.build("sungyupv/kubectl_cli")
     }
  
     stage('Test') {
@@ -16,10 +13,10 @@ node{
         '''
     }
     stage('Archive') {
-        withCredentials([usernamePassword(credentialsId: '44cd9687-e273-488b-986e-2d608da5fe27', passwordVariable: 'password', usernameVariable: 'username')]) {
-            sh "sudo docker login -u $username -p $password"
+        stage('Push image') {
+            docker.withRegistry('https://hub.docker.com/repository/docker/sungyupv/kubectl_cli', 'docker-hub') {
+                app.push("latest")
         }
-        sh 'sudo docker push sungyupv/kubectl_cli:latest'
     }
 }
 
