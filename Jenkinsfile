@@ -11,21 +11,17 @@ node{
     }
  
     stage('Test') {
-        steps {
-            sh '''
-            echo "Start Test"
-            ./main
-            '''
-        }
+        sh '''
+        echo "Start Test"
+        ./main
+        '''
     }
     stage('Archive') {
-        steps {
-            sh '''
-            echo "Start Archiving"
-            mv ./main ./artifact/
-            '''
-            archiveArtifacts artifacts: 'artifact/*', fingerprint: true 
-        }
+        sh '''
+        echo "Start Archiving"
+        mv ./main ./artifact/
+        '''
+        archiveArtifacts artifacts: 'artifact/*', fingerprint: true 
     }
 }
 
