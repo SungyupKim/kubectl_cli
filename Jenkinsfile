@@ -15,7 +15,7 @@ node{
     }
     stage('Archive') {
         stage('Push image') {
-            docker.withRegistry('https://hub.docker.com/repository/docker/sungyupv/kubectl_cli', 'docker-hub') {
+            docker.withRegistry('https://hub.docker.com/repository/docker/sungyupv/kubectl_cli', '44cd9687-e273-488b-986e-2d608da5fe27') {
                 app.push("latest")
             }
         }
