@@ -6,7 +6,7 @@ node{
     stage('Build'){
         withEnv(["GOROOT=${root}", "PATH+GO=${root}/bin"]) {
             sh 'go version'
-            sh 'docker build -t sungyupv/kubectl_cli:latest'
+            sh 'docker build -t sungyupv/kubectl_cli:latest .'
         }
     }
  
