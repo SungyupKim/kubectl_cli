@@ -17,7 +17,7 @@ node{
     }
     stage('Archive') {
         withCredentials([usernamePassword(credentialsId: '44cd9687-e273-488b-986e-2d608da5fe27', passwordVariable: 'password', usernameVariable: 'username')]) {
-            sh "sudo docker login -u $username -p $password ..."
+            sh "sudo docker login -u $username -p $password"
         }
         sh 'sudo docker push sungyupv/kubectl_cli:latest'
     }
