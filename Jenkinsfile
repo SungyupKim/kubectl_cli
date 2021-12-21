@@ -3,14 +3,12 @@ pipeline {
 
     stages {
         stage('Build') {
-            steps{
-                node("testing"){
-                    def root = tool type: 'go', name: 'go 1.17.5'
-                    // Export environment variables pointing to the directory where Go was installed
-                    withEnv(["GOROOT=${root}", "PATH+GO=${root}/bin"]) {
-                            sh 'go version'
-                            sh 'go build -o main'
-                    }
+            node("testing"){
+                def root = tool type: 'go', name: 'go 1.17.5'
+                // Export environment variables pointing to the directory where Go was installed
+                withEnv(["GOROOT=${root}", "PATH+GO=${root}/bin"]) {
+                        sh 'go version'
+                        sh 'go build -o main'
                 }
             }
         }
