@@ -1,5 +1,9 @@
 
 node{
+    stage("Fix the permission issue") {
+        sh "sudo chown root:jenkins /run/docker.sock"
+    }
+
     stage('Build'){
         app = docker.build("sungyupv/kubectl_cli")
     }
