@@ -1,9 +1,6 @@
 
 node{
     stage('Build'){
-        sh '''
-        sudo su
-        '''
         app = docker.build("sungyupv/kubectl_cli")
     }
  
