@@ -40,6 +40,9 @@ import (
 // added comment.
 
 func main() {
+	a := 10
+
+	fmt.Printf("%d\n", a)
 	var kubeconfig *string
 	if home := homedir.HomeDir(); home != "" {
 		kubeconfig = flag.String("kubeconfig", filepath.Join(home, ".kube", "config"), "(optional) absolute path to the kubeconfig file")
