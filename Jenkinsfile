@@ -6,7 +6,14 @@ node{
 
     stage('Build'){
         sh "sudo su"
-        checkout scm
+        checkout([$class: 'GitSCM',
+                branches: [[name: '*/main' ]],
+                extensions: scm.extensions,
+                userRemoteConfigs: [[
+                    url: 'git@192.168.219.116:paas/kubectl-cli.git',
+                    credentialsId: 'd5e8a4a0-9ad4-4ccb-a17d-2691121e762c',
+                ]]
+        ])
         app = docker.build("sungyupv/kubectl_cli")
     }
  
