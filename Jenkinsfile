@@ -14,6 +14,7 @@ node{
                     credentialsId: 'd5e8a4a0-9ad4-4ccb-a17d-2691121e762c',
                 ]]
         ])
+        sh "git checkout main"
         app = docker.build("sungyupv/kubectl_cli")
     }
  
