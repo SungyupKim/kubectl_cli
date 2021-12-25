@@ -20,7 +20,7 @@ podTemplate(label: 'build',
             sh "sudo su"
             checkout([$class: 'GitSCM',
                     branches: [[name: '*/main' ]],
-                    extensions: scm.extensions,
+                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'source']],
                     userRemoteConfigs: [[
                         url: 'git@192.168.219.116:paas/kubectl-cli.git',
                         credentialsId: 'd5e8a4a0-9ad4-4ccb-a17d-2691121e762c',
@@ -49,7 +49,7 @@ podTemplate(label: 'build',
             container('argo'){
                 checkout([$class: 'GitSCM',
                         branches: [[name: '*/main' ]],
-                        extensions: scm.extensions,
+                        extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'deploy']],,
                         userRemoteConfigs: [[
                             url: 'git@192.168.219.116:paas/kubectl-cli-deployment.git',
                             credentialsId: 'd5e8a4a0-9ad4-4ccb-a17d-2691121e762c',
