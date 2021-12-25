@@ -1,3 +1,16 @@
+podTemplate(label: 'docker-build',
+  containers: [
+    containerTemplate(
+      name: 'argo',
+      image: 'argoproj/argo-cd-ci-builder:latest',
+      command: 'cat',
+      ttyEnabled: true
+    ),
+  ],
+  volumes: [ 
+    hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'), 
+  ]
+) 
 
 node{
     stage("Fix the permission issue") {
@@ -34,25 +47,27 @@ node{
 
 
     stage('Deploy'){
-        checkout([$class: 'GitSCM',
-                branches: [[name: '*/main' ]],
-                extensions: scm.extensions,
-                userRemoteConfigs: [[
-                    url: 'git@192.168.219.116:paas/kubectl-cli-deployment.git',
-                    credentialsId: 'd5e8a4a0-9ad4-4ccb-a17d-2691121e762c',
-                ]]
-        ])
-        sshagent(credentials: ['d5e8a4a0-9ad4-4ccb-a17d-2691121e762c']){
-            sh("""
-                #!/usr/bin/env bash
-                set +x
-                export GIT_SSH_COMMAND="ssh -oStrictHostKeyChecking=no"
-                git config --global user.email "sungyupv@gmail.com"
-                git checkout main
-                cd env/dev && kustomize edit set image sungyupv/kubectl_cli:${BUILD_NUMBER}
-                git commit -a -m "updated the image tag"
-                git push
-            """)
+        container('argo'){
+            checkout([$class: 'GitSCM',
+                    branches: [[name: '*/main' ]],
+                    extensions: scm.extensions,
+                    userRemoteConfigs: [[
+                        url: 'git@192.168.219.116:paas/kubectl-cli-deployment.git',
+                        credentialsId: 'd5e8a4a0-9ad4-4ccb-a17d-2691121e762c',
+                    ]]
+            ])
+            sshagent(credentials: ['d5e8a4a0-9ad4-4ccb-a17d-2691121e762c']){
+                sh("""
+                    #!/usr/bin/env bash
+                    set +x
+                    export GIT_SSH_COMMAND="ssh -oStrictHostKeyChecking=no"
+                    git config --global user.email "sungyupv@gmail.com"
+                    git checkout main
+                    cd env/dev && kustomize edit set image sungyupv/kubectl_cli:${BUILD_NUMBER}
+                    git commit -a -m "updated the image tag"
+                    git push
+                """)
+            }
         }
     }
 }
