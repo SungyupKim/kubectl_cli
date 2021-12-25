@@ -1,4 +1,4 @@
-podTemplate(label: 'docker-build',
+podTemplate(label: 'build',
   containers: [
     containerTemplate(
       name: 'argo',
@@ -11,7 +11,7 @@ podTemplate(label: 'docker-build',
     hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'), 
   ]
 ) {
-    node{
+    node('build'){
         stage("Fix the permission issue") {
             sh "sudo chown root:jenkins /run/docker.sock"
         }
