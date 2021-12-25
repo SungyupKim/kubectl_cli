@@ -6,6 +6,7 @@ node{
 
     stage('Build'){
         sh "sudo su"
+        checkout scm
         app = docker.build("sungyupv/kubectl_cli")
     }
  
