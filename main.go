@@ -37,6 +37,8 @@ import (
 	// _ "k8s.io/client-go/plugin/pkg/client/auth/openstack"
 )
 
+// added comment.
+
 func main() {
 	var kubeconfig *string
 	if home := homedir.HomeDir(); home != "" {
