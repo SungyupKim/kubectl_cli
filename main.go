@@ -40,8 +40,7 @@ import (
 // added comment.
 
 func main() {
-	a := 10
-
+	a := 11
 	fmt.Printf("%d\n", a)
 	var kubeconfig *string
 	if home := homedir.HomeDir(); home != "" {
