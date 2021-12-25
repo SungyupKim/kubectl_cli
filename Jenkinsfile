@@ -30,10 +30,10 @@ node{
                 extensions: scm.extensions,
                 userRemoteConfigs: [[
                     url: 'git@localhost:paas/kubectl-cli-deployment.git',
-                    credentialsId: 'jenkins-ssh-private',
+                    credentialsId: 'd5e8a4a0-9ad4-4ccb-a17d-2691121e762c',
                 ]]
         ])
-        sshagent(credentials: ['jenkins-ssh-private']){
+        sshagent(credentials: ['d5e8a4a0-9ad4-4ccb-a17d-2691121e762c']){
             sh("""
                 #!/usr/bin/env bash
                 set +x
