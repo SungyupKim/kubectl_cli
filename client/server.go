@@ -31,19 +31,21 @@ func (s *ClientServer) GetPods(ctx context.Context, in *GetPodsRequest) (*GetPod
 	fileName := util.RandStringRunes(32)
 	ioutil.WriteFile(fileName, sDec, 0644)
 	config, err := clientcmd.BuildConfigFromFlags("", fileName)
+	defer os.Remove(fileName)
+
 	if err != nil {
-		panic(err.Error())
+		return nil, err
 	}
 
 	// create the clientset
 	clientset, err := kubernetes.NewForConfig(config)
 	if err != nil {
-		panic(err.Error())
+		return nil, err
 	}
 
 	pods, err := clientset.CoreV1().Pods("").List(context.TODO(), metav1.ListOptions{})
 	if err != nil {
-		panic(err.Error())
+		return nil, err
 	}
 	fmt.Printf("There are %d pods in the cluster\n", len(pods.Items))
 
@@ -60,6 +62,7 @@ func (s *ClientServer) GetPods(ctx context.Context, in *GetPodsRequest) (*GetPod
 			pod, namespace, statusError.ErrStatus.Message)
 		return nil, statusError
 	} else if err != nil {
+
 		return nil, err
 	}
 
@@ -98,6 +101,6 @@ func (s *ClientServer) GetPods(ctx context.Context, in *GetPodsRequest) (*GetPod
 		podInfoArr = append(podInfoArr, &podInfo)
 	}
 
-	os.Remove(fileName)
+	fmt.Printf("%+v\n", podInfoArr)
 	return &GetPodsResponse{Resp: &common.CommonResponse{Descryption: "get pods successful", ResultCode: 0}, Info: podInfoArr}, nil
 }
