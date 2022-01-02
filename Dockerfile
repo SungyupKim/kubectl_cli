@@ -4,4 +4,5 @@ RUN mkdir /app
 COPY . /app
 WORKDIR /app
 RUN go build -o main . 
+EXPOSE 3010
 CMD ["/app/main"]
