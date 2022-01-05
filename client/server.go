@@ -15,6 +15,7 @@ import (
 	"k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
+	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
 )
 
@@ -22,16 +23,39 @@ type ClientServer struct {
 	UnimplementedKubectlClientServer
 }
 
+func makeKubeConfigFile(kubeConfigContent string) (*rest.Config, error) {
+	sDec, _ := b64.StdEncoding.DecodeString(kubeConfigContent)
+	fileName := util.RandStringRunes(32)
+	ioutil.WriteFile(fileName, sDec, 0644)
+	config, err := clientcmd.BuildConfigFromFlags("", fileName)
+	defer os.Remove(fileName)
+	if err != nil {
+		return nil, err
+	} else {
+		return config, nil
+	}
+}
+
+func (s *ClientServer) GetNamespaces(ctx context.Context, in *GetNamespaceRequest) (*GetNamespaceResponse, error) {
+	if in.Req.Kubeconfig == "" {
+		return &GetNamespaceResponse{Resp: &common.CommonResponse{Descryption: "empty kubeconfig", ResultCode: 1}}, nil
+	}
+
+	//config, err := makeKubeConfigFile(in.Req.Kubeconfig)
+
+	//	if err != nil {
+	//		return nil, err
+	//	}
+
+	return nil, nil
+}
+
 func (s *ClientServer) GetPods(ctx context.Context, in *GetPodsRequest) (*GetPodsResponse, error) {
 	if in.Req.Kubeconfig == "" {
 		return &GetPodsResponse{Resp: &common.CommonResponse{Descryption: "empty kubeconfig", ResultCode: 1}}, nil
 	}
 
-	sDec, _ := b64.StdEncoding.DecodeString(in.Req.Kubeconfig)
-	fileName := util.RandStringRunes(32)
-	ioutil.WriteFile(fileName, sDec, 0644)
-	config, err := clientcmd.BuildConfigFromFlags("", fileName)
-	defer os.Remove(fileName)
+	config, err := makeKubeConfigFile(in.Req.Kubeconfig)
 
 	if err != nil {
 		return nil, err
