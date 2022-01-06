@@ -41,13 +41,31 @@ func (s *ClientServer) GetNamespaces(ctx context.Context, in *GetNamespaceReques
 		return &GetNamespaceResponse{Resp: &common.CommonResponse{Descryption: "empty kubeconfig", ResultCode: 1}}, nil
 	}
 
-	//config, err := makeKubeConfigFile(in.Req.Kubeconfig)
+	config, err := makeKubeConfigFile(in.Req.Kubeconfig)
 
-	//	if err != nil {
-	//		return nil, err
-	//	}
+	if err != nil {
+		return nil, err
+	}
 
-	return nil, nil
+	clientset, err := kubernetes.NewForConfig(config)
+	if err != nil {
+		return nil, err
+	}
+
+	namespaces, err := clientset.CoreV1().Namespaces().List(context.TODO(), metav1.ListOptions{})
+
+	if err != nil {
+		return nil, err
+	}
+
+	namespaceArr := make([]string, 0)
+
+	for _, namespace := range namespaces.Items {
+		namespaceArr = append(namespaceArr, namespace.Name)
+	}
+
+	resp := &GetNamespaceResponse{Namespace: namespaceArr, Resp: &common.CommonResponse{Descryption: "get namespaces successful", ResultCode: 0}}
+	return resp, nil
 }
 
 func (s *ClientServer) GetPods(ctx context.Context, in *GetPodsRequest) (*GetPodsResponse, error) {
@@ -67,26 +85,13 @@ func (s *ClientServer) GetPods(ctx context.Context, in *GetPodsRequest) (*GetPod
 		return nil, err
 	}
 
-	pods, err := clientset.CoreV1().Pods("").List(context.TODO(), metav1.ListOptions{})
-	if err != nil {
-		return nil, err
-	}
-	fmt.Printf("There are %d pods in the cluster\n", len(pods.Items))
-
-	// Examples for error handling:
-	// - Use helper functions like e.g. errors.IsNotFound()
-	// - And/or cast to StatusError and use its properties like e.g. ErrStatus.Message
 	namespace := in.Namespace
-	pod := "example-xxxxx"
-	pods, err = clientset.CoreV1().Pods(namespace).List(context.TODO(), metav1.ListOptions{})
-	if errors.IsNotFound(err) {
-		fmt.Printf("Pod %s in namespace %s not found\n", pod, namespace)
-	} else if statusError, isStatus := err.(*errors.StatusError); isStatus {
-		fmt.Printf("Error getting pod %s in namespace %s: %v\n",
-			pod, namespace, statusError.ErrStatus.Message)
+	pods, err := clientset.CoreV1().Pods(namespace).List(context.TODO(), metav1.ListOptions{})
+	if statusError, isStatus := err.(*errors.StatusError); isStatus {
+		fmt.Printf("Error getting pod in namespace %s: %v\n",
+			namespace, statusError.ErrStatus.Message)
 		return nil, statusError
 	} else if err != nil {
-
 		return nil, err
 	}
 
