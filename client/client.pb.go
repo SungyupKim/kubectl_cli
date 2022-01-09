@@ -132,108 +132,6 @@ func (x *GetPodsResponse) GetInfo() []*PodInfo {
 	return nil
 }
 
-type GetNamespaceRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Req *common.CommonRequest `protobuf:"bytes,1,opt,name=req,proto3" json:"req,omitempty"`
-}
-
-func (x *GetNamespaceRequest) Reset() {
-	*x = GetNamespaceRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_client_proto_msgTypes[2]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetNamespaceRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetNamespaceRequest) ProtoMessage() {}
-
-func (x *GetNamespaceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_client_proto_msgTypes[2]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetNamespaceRequest.ProtoReflect.Descriptor instead.
-func (*GetNamespaceRequest) Descriptor() ([]byte, []int) {
-	return file_client_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *GetNamespaceRequest) GetReq() *common.CommonRequest {
-	if x != nil {
-		return x.Req
-	}
-	return nil
-}
-
-type GetNamespaceResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Resp      *common.CommonResponse `protobuf:"bytes,1,opt,name=resp,proto3" json:"resp,omitempty"`
-	Namespace []string               `protobuf:"bytes,2,rep,name=namespace,proto3" json:"namespace,omitempty"`
-}
-
-func (x *GetNamespaceResponse) Reset() {
-	*x = GetNamespaceResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_client_proto_msgTypes[3]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetNamespaceResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetNamespaceResponse) ProtoMessage() {}
-
-func (x *GetNamespaceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_client_proto_msgTypes[3]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetNamespaceResponse.ProtoReflect.Descriptor instead.
-func (*GetNamespaceResponse) Descriptor() ([]byte, []int) {
-	return file_client_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *GetNamespaceResponse) GetResp() *common.CommonResponse {
-	if x != nil {
-		return x.Resp
-	}
-	return nil
-}
-
-func (x *GetNamespaceResponse) GetNamespace() []string {
-	if x != nil {
-		return x.Namespace
-	}
-	return nil
-}
-
 type PodInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -251,7 +149,7 @@ type PodInfo struct {
 func (x *PodInfo) Reset() {
 	*x = PodInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_client_proto_msgTypes[4]
+		mi := &file_client_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -264,7 +162,7 @@ func (x *PodInfo) String() string {
 func (*PodInfo) ProtoMessage() {}
 
 func (x *PodInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_client_proto_msgTypes[4]
+	mi := &file_client_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -277,7 +175,7 @@ func (x *PodInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PodInfo.ProtoReflect.Descriptor instead.
 func (*PodInfo) Descriptor() ([]byte, []int) {
-	return file_client_proto_rawDescGZIP(), []int{4}
+	return file_client_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *PodInfo) GetNamespace() string {
@@ -329,6 +227,376 @@ func (x *PodInfo) GetAge() string {
 	return ""
 }
 
+type GetNamespaceRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Req *common.CommonRequest `protobuf:"bytes,1,opt,name=req,proto3" json:"req,omitempty"`
+}
+
+func (x *GetNamespaceRequest) Reset() {
+	*x = GetNamespaceRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_client_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetNamespaceRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetNamespaceRequest) ProtoMessage() {}
+
+func (x *GetNamespaceRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_client_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetNamespaceRequest.ProtoReflect.Descriptor instead.
+func (*GetNamespaceRequest) Descriptor() ([]byte, []int) {
+	return file_client_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetNamespaceRequest) GetReq() *common.CommonRequest {
+	if x != nil {
+		return x.Req
+	}
+	return nil
+}
+
+type GetNamespaceResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Resp      *common.CommonResponse `protobuf:"bytes,1,opt,name=resp,proto3" json:"resp,omitempty"`
+	Namespace []string               `protobuf:"bytes,2,rep,name=namespace,proto3" json:"namespace,omitempty"`
+}
+
+func (x *GetNamespaceResponse) Reset() {
+	*x = GetNamespaceResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_client_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetNamespaceResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetNamespaceResponse) ProtoMessage() {}
+
+func (x *GetNamespaceResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_client_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetNamespaceResponse.ProtoReflect.Descriptor instead.
+func (*GetNamespaceResponse) Descriptor() ([]byte, []int) {
+	return file_client_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *GetNamespaceResponse) GetResp() *common.CommonResponse {
+	if x != nil {
+		return x.Resp
+	}
+	return nil
+}
+
+func (x *GetNamespaceResponse) GetNamespace() []string {
+	if x != nil {
+		return x.Namespace
+	}
+	return nil
+}
+
+type GetServiceRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Req       *common.CommonRequest `protobuf:"bytes,1,opt,name=req,proto3" json:"req,omitempty"`
+	Namespace string                `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
+}
+
+func (x *GetServiceRequest) Reset() {
+	*x = GetServiceRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_client_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetServiceRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetServiceRequest) ProtoMessage() {}
+
+func (x *GetServiceRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_client_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetServiceRequest.ProtoReflect.Descriptor instead.
+func (*GetServiceRequest) Descriptor() ([]byte, []int) {
+	return file_client_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetServiceRequest) GetReq() *common.CommonRequest {
+	if x != nil {
+		return x.Req
+	}
+	return nil
+}
+
+func (x *GetServiceRequest) GetNamespace() string {
+	if x != nil {
+		return x.Namespace
+	}
+	return ""
+}
+
+type GetServiceResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Resp     *common.CommonResponse `protobuf:"bytes,1,opt,name=resp,proto3" json:"resp,omitempty"`
+	Services []*ServiceInfo         `protobuf:"bytes,2,rep,name=services,proto3" json:"services,omitempty"`
+}
+
+func (x *GetServiceResponse) Reset() {
+	*x = GetServiceResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_client_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetServiceResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetServiceResponse) ProtoMessage() {}
+
+func (x *GetServiceResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_client_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetServiceResponse.ProtoReflect.Descriptor instead.
+func (*GetServiceResponse) Descriptor() ([]byte, []int) {
+	return file_client_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetServiceResponse) GetResp() *common.CommonResponse {
+	if x != nil {
+		return x.Resp
+	}
+	return nil
+}
+
+func (x *GetServiceResponse) GetServices() []*ServiceInfo {
+	if x != nil {
+		return x.Services
+	}
+	return nil
+}
+
+type PortInfo struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Port       int32  `protobuf:"varint,1,opt,name=port,proto3" json:"port,omitempty"`
+	TargetPort int32  `protobuf:"varint,2,opt,name=targetPort,proto3" json:"targetPort,omitempty"`
+	Protocol   string `protobuf:"bytes,3,opt,name=protocol,proto3" json:"protocol,omitempty"`
+}
+
+func (x *PortInfo) Reset() {
+	*x = PortInfo{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_client_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PortInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PortInfo) ProtoMessage() {}
+
+func (x *PortInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_client_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PortInfo.ProtoReflect.Descriptor instead.
+func (*PortInfo) Descriptor() ([]byte, []int) {
+	return file_client_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *PortInfo) GetPort() int32 {
+	if x != nil {
+		return x.Port
+	}
+	return 0
+}
+
+func (x *PortInfo) GetTargetPort() int32 {
+	if x != nil {
+		return x.TargetPort
+	}
+	return 0
+}
+
+func (x *PortInfo) GetProtocol() string {
+	if x != nil {
+		return x.Protocol
+	}
+	return ""
+}
+
+type ServiceInfo struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name          string      `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Type          string      `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
+	ClusterIp     string      `protobuf:"bytes,3,opt,name=clusterIp,proto3" json:"clusterIp,omitempty"`
+	ExternalIp    []string    `protobuf:"bytes,4,rep,name=externalIp,proto3" json:"externalIp,omitempty"`
+	Ports         []*PortInfo `protobuf:"bytes,5,rep,name=ports,proto3" json:"ports,omitempty"`
+	Age           string      `protobuf:"bytes,6,opt,name=age,proto3" json:"age,omitempty"`
+	LabelSelector string      `protobuf:"bytes,7,opt,name=labelSelector,proto3" json:"labelSelector,omitempty"`
+}
+
+func (x *ServiceInfo) Reset() {
+	*x = ServiceInfo{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_client_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ServiceInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ServiceInfo) ProtoMessage() {}
+
+func (x *ServiceInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_client_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ServiceInfo.ProtoReflect.Descriptor instead.
+func (*ServiceInfo) Descriptor() ([]byte, []int) {
+	return file_client_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *ServiceInfo) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ServiceInfo) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *ServiceInfo) GetClusterIp() string {
+	if x != nil {
+		return x.ClusterIp
+	}
+	return ""
+}
+
+func (x *ServiceInfo) GetExternalIp() []string {
+	if x != nil {
+		return x.ExternalIp
+	}
+	return nil
+}
+
+func (x *ServiceInfo) GetPorts() []*PortInfo {
+	if x != nil {
+		return x.Ports
+	}
+	return nil
+}
+
+func (x *ServiceInfo) GetAge() string {
+	if x != nil {
+		return x.Age
+	}
+	return ""
+}
+
+func (x *ServiceInfo) GetLabelSelector() string {
+	if x != nil {
+		return x.LabelSelector
+	}
+	return ""
+}
+
 var File_client_proto protoreflect.FileDescriptor
 
 var file_client_proto_rawDesc = []byte{
@@ -344,7 +612,19 @@ var file_client_proto_rawDesc = []byte{
 	0x0f, 0x2e, 0x43, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
 	0x52, 0x04, 0x72, 0x65, 0x73, 0x70, 0x12, 0x1c, 0x0a, 0x04, 0x69, 0x6e, 0x66, 0x6f, 0x18, 0x02,
 	0x20, 0x03, 0x28, 0x0b, 0x32, 0x08, 0x2e, 0x50, 0x6f, 0x64, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x04,
-	0x69, 0x6e, 0x66, 0x6f, 0x22, 0x37, 0x0a, 0x13, 0x47, 0x65, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x73,
+	0x69, 0x6e, 0x66, 0x6f, 0x22, 0xbd, 0x01, 0x0a, 0x07, 0x50, 0x6f, 0x64, 0x49, 0x6e, 0x66, 0x6f,
+	0x12, 0x1c, 0x0a, 0x09, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x09, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x12, 0x12,
+	0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61,
+	0x6d, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x50, 0x6f, 0x64, 0x73, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x09, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x50, 0x6f, 0x64, 0x73,
+	0x12, 0x1c, 0x0a, 0x09, 0x72, 0x65, 0x61, 0x64, 0x79, 0x50, 0x6f, 0x64, 0x73, 0x18, 0x04, 0x20,
+	0x01, 0x28, 0x05, 0x52, 0x09, 0x72, 0x65, 0x61, 0x64, 0x79, 0x50, 0x6f, 0x64, 0x73, 0x12, 0x16,
+	0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06,
+	0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x1a, 0x0a, 0x08, 0x72, 0x65, 0x73, 0x74, 0x61, 0x72,
+	0x74, 0x73, 0x18, 0x06, 0x20, 0x01, 0x28, 0x05, 0x52, 0x08, 0x72, 0x65, 0x73, 0x74, 0x61, 0x72,
+	0x74, 0x73, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x67, 0x65, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x03, 0x61, 0x67, 0x65, 0x22, 0x37, 0x0a, 0x13, 0x47, 0x65, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x73,
 	0x70, 0x61, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x20, 0x0a, 0x03, 0x72,
 	0x65, 0x71, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0e, 0x2e, 0x43, 0x6f, 0x6d, 0x6d, 0x6f,
 	0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x03, 0x72, 0x65, 0x71, 0x22, 0x59, 0x0a,
@@ -353,20 +633,42 @@ var file_client_proto_rawDesc = []byte{
 	0x01, 0x28, 0x0b, 0x32, 0x0f, 0x2e, 0x43, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70,
 	0x6f, 0x6e, 0x73, 0x65, 0x52, 0x04, 0x72, 0x65, 0x73, 0x70, 0x12, 0x1c, 0x0a, 0x09, 0x6e, 0x61,
 	0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x18, 0x02, 0x20, 0x03, 0x28, 0x09, 0x52, 0x09, 0x6e,
-	0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x22, 0xbd, 0x01, 0x0a, 0x07, 0x50, 0x6f, 0x64,
-	0x49, 0x6e, 0x66, 0x6f, 0x12, 0x1c, 0x0a, 0x09, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63,
-	0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61,
-	0x63, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x50,
-	0x6f, 0x64, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x09, 0x74, 0x6f, 0x74, 0x61, 0x6c,
-	0x50, 0x6f, 0x64, 0x73, 0x12, 0x1c, 0x0a, 0x09, 0x72, 0x65, 0x61, 0x64, 0x79, 0x50, 0x6f, 0x64,
-	0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x05, 0x52, 0x09, 0x72, 0x65, 0x61, 0x64, 0x79, 0x50, 0x6f,
-	0x64, 0x73, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x05, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x1a, 0x0a, 0x08, 0x72, 0x65,
-	0x73, 0x74, 0x61, 0x72, 0x74, 0x73, 0x18, 0x06, 0x20, 0x01, 0x28, 0x05, 0x52, 0x08, 0x72, 0x65,
-	0x73, 0x74, 0x61, 0x72, 0x74, 0x73, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x67, 0x65, 0x18, 0x07, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x03, 0x61, 0x67, 0x65, 0x32, 0x7f, 0x0a, 0x0d, 0x4b, 0x75, 0x62, 0x65,
-	0x63, 0x74, 0x6c, 0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x12, 0x3e, 0x0a, 0x0d, 0x47, 0x65, 0x74,
+	0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x22, 0x53, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x53,
+	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x20, 0x0a,
+	0x03, 0x72, 0x65, 0x71, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0e, 0x2e, 0x43, 0x6f, 0x6d,
+	0x6d, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x03, 0x72, 0x65, 0x71, 0x12,
+	0x1c, 0x0a, 0x09, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x09, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x22, 0x63, 0x0a,
+	0x12, 0x47, 0x65, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x23, 0x0a, 0x04, 0x72, 0x65, 0x73, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x0f, 0x2e, 0x43, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x52, 0x04, 0x72, 0x65, 0x73, 0x70, 0x12, 0x28, 0x0a, 0x08, 0x73, 0x65, 0x72, 0x76,
+	0x69, 0x63, 0x65, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x53, 0x65, 0x72,
+	0x76, 0x69, 0x63, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x08, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63,
+	0x65, 0x73, 0x22, 0x5a, 0x0a, 0x08, 0x50, 0x6f, 0x72, 0x74, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x12,
+	0x0a, 0x04, 0x70, 0x6f, 0x72, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x70, 0x6f,
+	0x72, 0x74, 0x12, 0x1e, 0x0a, 0x0a, 0x74, 0x61, 0x72, 0x67, 0x65, 0x74, 0x50, 0x6f, 0x72, 0x74,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0a, 0x74, 0x61, 0x72, 0x67, 0x65, 0x74, 0x50, 0x6f,
+	0x72, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x22, 0xcc,
+	0x01, 0x0a, 0x0b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x12,
+	0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61,
+	0x6d, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65,
+	0x72, 0x49, 0x70, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x63, 0x6c, 0x75, 0x73, 0x74,
+	0x65, 0x72, 0x49, 0x70, 0x12, 0x1e, 0x0a, 0x0a, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c,
+	0x49, 0x70, 0x18, 0x04, 0x20, 0x03, 0x28, 0x09, 0x52, 0x0a, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e,
+	0x61, 0x6c, 0x49, 0x70, 0x12, 0x1f, 0x0a, 0x05, 0x70, 0x6f, 0x72, 0x74, 0x73, 0x18, 0x05, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x09, 0x2e, 0x50, 0x6f, 0x72, 0x74, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x05,
+	0x70, 0x6f, 0x72, 0x74, 0x73, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x67, 0x65, 0x18, 0x06, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x03, 0x61, 0x67, 0x65, 0x12, 0x24, 0x0a, 0x0d, 0x6c, 0x61, 0x62, 0x65, 0x6c,
+	0x53, 0x65, 0x6c, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d,
+	0x6c, 0x61, 0x62, 0x65, 0x6c, 0x53, 0x65, 0x6c, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x32, 0xb9, 0x01,
+	0x0a, 0x0d, 0x4b, 0x75, 0x62, 0x65, 0x63, 0x74, 0x6c, 0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x12,
+	0x38, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x73, 0x12, 0x12,
+	0x2e, 0x47, 0x65, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x13, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x3e, 0x0a, 0x0d, 0x47, 0x65, 0x74,
 	0x4e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x73, 0x12, 0x14, 0x2e, 0x47, 0x65, 0x74,
 	0x4e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
 	0x1a, 0x15, 0x2e, 0x47, 0x65, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x52,
@@ -392,31 +694,41 @@ func file_client_proto_rawDescGZIP() []byte {
 	return file_client_proto_rawDescData
 }
 
-var file_client_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_client_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_client_proto_goTypes = []interface{}{
 	(*GetPodsRequest)(nil),        // 0: GetPodsRequest
 	(*GetPodsResponse)(nil),       // 1: GetPodsResponse
-	(*GetNamespaceRequest)(nil),   // 2: GetNamespaceRequest
-	(*GetNamespaceResponse)(nil),  // 3: GetNamespaceResponse
-	(*PodInfo)(nil),               // 4: PodInfo
-	(*common.CommonRequest)(nil),  // 5: CommonRequest
-	(*common.CommonResponse)(nil), // 6: CommonResponse
+	(*PodInfo)(nil),               // 2: PodInfo
+	(*GetNamespaceRequest)(nil),   // 3: GetNamespaceRequest
+	(*GetNamespaceResponse)(nil),  // 4: GetNamespaceResponse
+	(*GetServiceRequest)(nil),     // 5: GetServiceRequest
+	(*GetServiceResponse)(nil),    // 6: GetServiceResponse
+	(*PortInfo)(nil),              // 7: PortInfo
+	(*ServiceInfo)(nil),           // 8: ServiceInfo
+	(*common.CommonRequest)(nil),  // 9: CommonRequest
+	(*common.CommonResponse)(nil), // 10: CommonResponse
 }
 var file_client_proto_depIdxs = []int32{
-	5, // 0: GetPodsRequest.req:type_name -> CommonRequest
-	6, // 1: GetPodsResponse.resp:type_name -> CommonResponse
-	4, // 2: GetPodsResponse.info:type_name -> PodInfo
-	5, // 3: GetNamespaceRequest.req:type_name -> CommonRequest
-	6, // 4: GetNamespaceResponse.resp:type_name -> CommonResponse
-	2, // 5: KubectlClient.GetNamespaces:input_type -> GetNamespaceRequest
-	0, // 6: KubectlClient.GetPods:input_type -> GetPodsRequest
-	3, // 7: KubectlClient.GetNamespaces:output_type -> GetNamespaceResponse
-	1, // 8: KubectlClient.GetPods:output_type -> GetPodsResponse
-	7, // [7:9] is the sub-list for method output_type
-	5, // [5:7] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	9,  // 0: GetPodsRequest.req:type_name -> CommonRequest
+	10, // 1: GetPodsResponse.resp:type_name -> CommonResponse
+	2,  // 2: GetPodsResponse.info:type_name -> PodInfo
+	9,  // 3: GetNamespaceRequest.req:type_name -> CommonRequest
+	10, // 4: GetNamespaceResponse.resp:type_name -> CommonResponse
+	9,  // 5: GetServiceRequest.req:type_name -> CommonRequest
+	10, // 6: GetServiceResponse.resp:type_name -> CommonResponse
+	8,  // 7: GetServiceResponse.services:type_name -> ServiceInfo
+	7,  // 8: ServiceInfo.ports:type_name -> PortInfo
+	5,  // 9: KubectlClient.GetServices:input_type -> GetServiceRequest
+	3,  // 10: KubectlClient.GetNamespaces:input_type -> GetNamespaceRequest
+	0,  // 11: KubectlClient.GetPods:input_type -> GetPodsRequest
+	6,  // 12: KubectlClient.GetServices:output_type -> GetServiceResponse
+	4,  // 13: KubectlClient.GetNamespaces:output_type -> GetNamespaceResponse
+	1,  // 14: KubectlClient.GetPods:output_type -> GetPodsResponse
+	12, // [12:15] is the sub-list for method output_type
+	9,  // [9:12] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_client_proto_init() }
@@ -450,7 +762,7 @@ func file_client_proto_init() {
 			}
 		}
 		file_client_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetNamespaceRequest); i {
+			switch v := v.(*PodInfo); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -462,7 +774,7 @@ func file_client_proto_init() {
 			}
 		}
 		file_client_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetNamespaceResponse); i {
+			switch v := v.(*GetNamespaceRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -474,7 +786,55 @@ func file_client_proto_init() {
 			}
 		}
 		file_client_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PodInfo); i {
+			switch v := v.(*GetNamespaceResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_client_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetServiceRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_client_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetServiceResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_client_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*PortInfo); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_client_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ServiceInfo); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -492,7 +852,7 @@ func file_client_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_client_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

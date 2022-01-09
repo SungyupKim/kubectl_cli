@@ -19,6 +19,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type KubectlClientClient interface {
 	// Sends a greeting
+	GetServices(ctx context.Context, in *GetServiceRequest, opts ...grpc.CallOption) (*GetServiceResponse, error)
 	GetNamespaces(ctx context.Context, in *GetNamespaceRequest, opts ...grpc.CallOption) (*GetNamespaceResponse, error)
 	GetPods(ctx context.Context, in *GetPodsRequest, opts ...grpc.CallOption) (*GetPodsResponse, error)
 }
@@ -29,6 +30,15 @@ type kubectlClientClient struct {
 
 func NewKubectlClientClient(cc grpc.ClientConnInterface) KubectlClientClient {
 	return &kubectlClientClient{cc}
+}
+
+func (c *kubectlClientClient) GetServices(ctx context.Context, in *GetServiceRequest, opts ...grpc.CallOption) (*GetServiceResponse, error) {
+	out := new(GetServiceResponse)
+	err := c.cc.Invoke(ctx, "/KubectlClient/GetServices", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *kubectlClientClient) GetNamespaces(ctx context.Context, in *GetNamespaceRequest, opts ...grpc.CallOption) (*GetNamespaceResponse, error) {
@@ -54,6 +64,7 @@ func (c *kubectlClientClient) GetPods(ctx context.Context, in *GetPodsRequest, o
 // for forward compatibility
 type KubectlClientServer interface {
 	// Sends a greeting
+	GetServices(context.Context, *GetServiceRequest) (*GetServiceResponse, error)
 	GetNamespaces(context.Context, *GetNamespaceRequest) (*GetNamespaceResponse, error)
 	GetPods(context.Context, *GetPodsRequest) (*GetPodsResponse, error)
 	mustEmbedUnimplementedKubectlClientServer()
@@ -63,6 +74,9 @@ type KubectlClientServer interface {
 type UnimplementedKubectlClientServer struct {
 }
 
+func (UnimplementedKubectlClientServer) GetServices(context.Context, *GetServiceRequest) (*GetServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetServices not implemented")
+}
 func (UnimplementedKubectlClientServer) GetNamespaces(context.Context, *GetNamespaceRequest) (*GetNamespaceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNamespaces not implemented")
 }
@@ -80,6 +94,24 @@ type UnsafeKubectlClientServer interface {
 
 func RegisterKubectlClientServer(s grpc.ServiceRegistrar, srv KubectlClientServer) {
 	s.RegisterService(&KubectlClient_ServiceDesc, srv)
+}
+
+func _KubectlClient_GetServices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubectlClientServer).GetServices(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/KubectlClient/GetServices",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubectlClientServer).GetServices(ctx, req.(*GetServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _KubectlClient_GetNamespaces_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -125,6 +157,10 @@ var KubectlClient_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "KubectlClient",
 	HandlerType: (*KubectlClientServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetServices",
+			Handler:    _KubectlClient_GetServices_Handler,
+		},
 		{
 			MethodName: "GetNamespaces",
 			Handler:    _KubectlClient_GetNamespaces_Handler,
