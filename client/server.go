@@ -135,7 +135,13 @@ func (s *ClientServer) GetPods(ctx context.Context, in *GetPodsRequest) (*GetPod
 
 	namespace := in.Namespace
 
-	pods, err := clientset.CoreV1().Pods(namespace).List(context.TODO(), metav1.ListOptions{})
+	fmt.Printf("selector : %s\n", in.LabelSelector)
+	getPodsOption := metav1.ListOptions{}
+	if in.LabelSelector != "" {
+		getPodsOption.LabelSelector = in.LabelSelector
+	}
+
+	pods, err := clientset.CoreV1().Pods(namespace).List(context.TODO(), getPodsOption)
 	if statusError, isStatus := err.(*errors.StatusError); isStatus {
 		fmt.Printf("Error getting pod in namespace %s: %v\n",
 			namespace, statusError.ErrStatus.Message)
@@ -150,7 +156,6 @@ func (s *ClientServer) GetPods(ctx context.Context, in *GetPodsRequest) (*GetPod
 		podInfo := PodInfo{}
 		podCreationTime := pod.GetCreationTimestamp()
 		age := time.Since(podCreationTime.Time).Round(time.Second)
-
 		podStatus := pod.Status
 		if len(pod.Spec.Containers) == 1 && podStatus.ContainerStatuses[0].State.Waiting != nil {
 			fmt.Printf("%+v\n", podStatus.ContainerStatuses[0])
